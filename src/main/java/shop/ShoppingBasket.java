@@ -1,6 +1,7 @@
 package shop;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ShoppingBasket {
@@ -11,6 +12,6 @@ public class ShoppingBasket {
     }
 
     public List<String> getContents() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 }

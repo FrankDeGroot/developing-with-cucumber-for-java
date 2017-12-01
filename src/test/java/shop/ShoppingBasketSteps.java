@@ -4,6 +4,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ShoppingBasketSteps {
 
     private ShoppingBasket shoppingBasket;
@@ -20,6 +23,6 @@ public class ShoppingBasketSteps {
 
     @Then("^My basket contains a banana$")
     public void myBasketContainsABanana() throws Throwable {
-        if (!shoppingBasket.getContents().contains("banana")) throw new AssertionError();
+        assertThat(shoppingBasket.getContents(), hasItem("banana"));
     }
 }
