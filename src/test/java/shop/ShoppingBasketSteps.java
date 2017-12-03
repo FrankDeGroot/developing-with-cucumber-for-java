@@ -16,13 +16,13 @@ public class ShoppingBasketSteps {
         shoppingBasket = new ShoppingBasket();
     }
 
-    @When("^I add a banana to my basket$")
-    public void iAddABananaToMyBasket() throws Throwable {
-        shoppingBasket.add("banana");
+    @When("^I add a '([^']+)' to my basket$")
+    public void iAddAProductToMyBasket(String product) throws Throwable {
+        shoppingBasket.add(product);
     }
 
-    @Then("^My basket contains a banana$")
-    public void myBasketContainsABanana() throws Throwable {
-        assertThat(shoppingBasket.getContents(), hasItem("banana"));
+    @Then("^My basket contains a '([^']+)'$")
+    public void myBasketContainsABanana(String product) throws Throwable {
+        assertThat(shoppingBasket.getContents(), hasItem(product));
     }
 }
