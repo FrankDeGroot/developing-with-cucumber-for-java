@@ -1,10 +1,9 @@
 Feature: Shopping Basket
-  Scenario: Adding an item
+  Scenario Outline: Adding an item
     Given My basket is empty
-    When I add a banana to my basket
-    Then My basket contains a banana
-
-  Scenario: Adding a different item
-    Given My basket is empty
-    When I add a 'blood orange' to my basket
-    Then My basket contains a 'blood orange'
+    When I add a '<product>' to my basket
+    Then My basket contains a '<product>'
+    Examples:
+      | product |
+      | banana |
+      | blood orange |
