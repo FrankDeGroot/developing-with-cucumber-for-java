@@ -6,6 +6,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.mockito.Mockito;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
@@ -18,18 +20,20 @@ public class ShoppingBasketSteps {
     private static final String PRODUCT_NAME = "'([^']*)'";
 
     private ShoppingBasket shoppingBasket;
-    private Inventory inventory;
+    private Inventory mockInventory;
+    private Catalog mockCatalog;
     private Exception exception;
 
     @Before
     public void before() {
-        inventory = Mockito.mock(Inventory.class);
+        mockInventory = Mockito.mock(Inventory.class);
+        mockCatalog = Mockito.mock(Catalog.class);
     }
 
     @Given("^My basket is empty$")
     public void myBasketIsEmpty() throws Throwable {
         //inventory = new AlwaysInStockInventory();
-        shoppingBasket = new ShoppingBasket(inventory, catalog);
+        shoppingBasket = new ShoppingBasket(mockInventory, mockCatalog);
     }
 
     @When("^I add a " + PRODUCT_NAME + " to my basket$")
@@ -70,11 +74,21 @@ public class ShoppingBasketSteps {
 
     @Given("^A " + PRODUCT_NAME + " is in stock$")
     public void aBananaInStock(String product) throws Throwable {
-        when(inventory.inStock(eq(product))).thenReturn(true);
+        when(mockInventory.inStock(eq(product))).thenReturn(true);
     }
 
     @Given("^A " + PRODUCT_NAME + " is out of stock$")
     public void aBananaOutOfStock(String product) throws Throwable {
-        when(inventory.inStock(eq(product))).thenReturn(false);
+        when(mockInventory.inStock(eq(product))).thenReturn(false);
+    }
+
+    @Given("^A " + PRODUCT_NAME + " is (\\d+) euros?$")
+    public void aProductIsEuro(String product, BigDecimal price) throws Throwable {
+        when(mockCatalog.getPrice(eq(product))).thenReturn(price);
+    }
+
+    @Then("^The total of my basket is (\\d+) euros$")
+    public void theTotalOfMyBasketIsEuros(BigDecimal total) throws Throwable {
+        assertThat(shoppingBasket.getTotal(), equalTo(total));
     }
 }

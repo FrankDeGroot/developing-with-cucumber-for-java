@@ -48,3 +48,10 @@ Feature: Shopping Basket
     When I add a 'banana' to my basket
     And I add a 'blood orange' to my basket
     Then The total of my basket is 3 euros
+
+  Scenario: Calculate total with same item twice
+    Given My basket is empty
+    When I add a 'banana' to my basket
+    And I add a 'banana' to my basket
+    And I add a 'blood orange' to my basket
+    Then The total of my basket is 4 euros

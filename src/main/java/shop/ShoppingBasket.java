@@ -49,6 +49,13 @@ public class ShoppingBasket {
     }
 
     public BigDecimal getTotal() {
-        return BigDecimal.ZERO;
+        BigDecimal total = BigDecimal.ZERO;
+        for(Item item: items.values()) {
+            String product = item.getProduct();
+            BigDecimal price = catalog.getPrice(product);
+            int count = item.getCount();
+            total = total.add(price.multiply(new BigDecimal(count)));
+        }
+        return total;
     }
 }
