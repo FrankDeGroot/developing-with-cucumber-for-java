@@ -1,13 +1,16 @@
 package shop;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ShoppingBasket {
     private final Map<String, Item> items = new HashMap<>();
     private final Inventory inventory;
+    private final Catalog catalog;
 
-    public ShoppingBasket(Inventory inventory) {
+    public ShoppingBasket(Inventory inventory, Catalog catalog) {
         this.inventory = inventory;
+        this.catalog = catalog;
     }
 
     public void add(String product) throws Exception {
@@ -43,5 +46,9 @@ public class ShoppingBasket {
 
     public Item getItem(String product) {
         return items.get(product);
+    }
+
+    public BigDecimal getTotal() {
+        return BigDecimal.ZERO;
     }
 }

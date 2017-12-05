@@ -3,6 +3,8 @@ Feature: Shopping Basket
   Background:
     Given A 'banana' is in stock
     Given A 'blood orange' is in stock
+    Given A 'banana' is 1 euro
+    Given A 'blood orange' is 2 euros
 
   @HappyFlow
   Scenario Outline: Adding an item
@@ -40,3 +42,9 @@ Feature: Shopping Basket
     Given A 'banana' is out of stock
     When I add a 'banana' to my basket
     Then My basket does NOT contain a 'banana'
+
+  Scenario: Calculate total
+    Given My basket is empty
+    When I add a 'banana' to my basket
+    And I add a 'blood orange' to my basket
+    Then The total of my basket is 3 euros

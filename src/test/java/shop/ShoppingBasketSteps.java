@@ -1,6 +1,5 @@
 package shop;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,7 +29,7 @@ public class ShoppingBasketSteps {
     @Given("^My basket is empty$")
     public void myBasketIsEmpty() throws Throwable {
         //inventory = new AlwaysInStockInventory();
-        shoppingBasket = new ShoppingBasket(inventory);
+        shoppingBasket = new ShoppingBasket(inventory, catalog);
     }
 
     @When("^I add a " + PRODUCT_NAME + " to my basket$")
