@@ -3,12 +3,13 @@ package shop;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+//import cucumber.api.java8.En;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertThat;
 
-public class ShoppingBasketSteps /*implements En*/ {
+public class ShoppingBasketSteps /* implements En */ {
 
     private ShoppingBasket shoppingBasket;
 
@@ -17,6 +18,7 @@ public class ShoppingBasketSteps /*implements En*/ {
 //        When("^I add a banana to my basket$", () -> shoppingBasket.add("banana"));
 //        When("^I remove a banana from my basket$", () -> shoppingBasket.remove("banana"));
 //        Then("^My basket should contain a banana$", () -> assertThat(shoppingBasket.getContents(), hasItem("banana")));
+//        Then("^My basket should be empty$", () -> assertThat(shoppingBasket.getContents().size(), is(0)));
 //    }
 
     @Given("^My basket is empty$")
