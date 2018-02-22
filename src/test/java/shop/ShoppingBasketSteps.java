@@ -43,6 +43,6 @@ public class ShoppingBasketSteps /* implements En */ {
 
     @Then("^My basket should be empty$")
     public void myBasketShouldBeEmpty() throws Throwable {
-        assertThat(shoppingBasket.getContents().size(), is(0));
+        assertThat(shoppingBasket.getContents().isEmpty(), is(true));
     }
 }

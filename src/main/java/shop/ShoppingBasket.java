@@ -1,11 +1,11 @@
 package shop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ShoppingBasket {
 
-    private final List<String> products = new ArrayList<>();
+    private final Set<String> products = new HashSet<>();
 
     public void add(String product) {
         products.add(product);
@@ -19,7 +19,7 @@ public class ShoppingBasket {
         products.clear();
     }
 
-    public List<String> getContents() {
+    public Set<String> getContents() {
         return products;
     }
 }
