@@ -13,17 +13,18 @@ public class ShoppingBasketSteps /* implements En */ {
 
     private ShoppingBasket shoppingBasket;
 
-//    public ShoppingBasketSteps() {
+    public ShoppingBasketSteps(ShoppingBasket shoppingBasket) {
+        this.shoppingBasket = shoppingBasket;
 //        Given("^My basket is empty$", () -> this.shoppingBasket = new ShoppingBasket());
 //        When("^I add a banana to my basket$", () -> shoppingBasket.add("banana"));
 //        When("^I remove a banana from my basket$", () -> shoppingBasket.remove("banana"));
 //        Then("^My basket should contain a banana$", () -> assertThat(shoppingBasket.getContents(), hasItem("banana")));
 //        Then("^My basket should be empty$", () -> assertThat(shoppingBasket.getContents().size(), is(0)));
-//    }
+    }
 
     @Given("^My basket is empty$")
     public void myBasketIsEmpty() throws Throwable {
-        shoppingBasket = new ShoppingBasket();
+        shoppingBasket.clear();
     }
 
     @When("^I add a banana to my basket$")
@@ -38,7 +39,7 @@ public class ShoppingBasketSteps /* implements En */ {
 
     @Then("^My basket should contain a banana$")
     public void myBasketShouldContainABanana() throws Throwable {
-        assertThat(shoppingBasket.getContents(), hasItem("banana"));
+        assertThat(shoppingBasket.getCount("banana"), is(1));
     }
 
     @Then("^My basket should be empty$")
